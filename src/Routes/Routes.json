@@ -1,0 +1,11 @@
+{
+    "PAGE": [
+        {
+            "PAGE_ID": 1,
+            "NAME": "CreateMember",
+            "REACT_PATH": "CreateMember/CreateMember",
+            "PATH": "CreateMember",
+            "PAGE_CODE": "1"
+        }
+    ]
+}
