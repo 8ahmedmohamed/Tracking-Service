@@ -1,6 +1,11 @@
 {
-    "Lang": "English",
+    "Lang": "ENG",
     "Main": "Main",
     "Prices": "Prices",
-    "Call_Sales": "Call Sales"
+    "Call_Sales": "Call Sales",
+    "Log_Out": "Log Out",
+    "Sign_Up": "Sign Up",
+    "Track_Shipment": "Track Shipment",
+    "Track_Your_Shipment": "Track Your Shipment",
+    "Tracking_No": "Tracking No."
 }

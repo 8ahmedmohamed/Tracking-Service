@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 //translation
 import { useTranslation } from "react-i18next";
 import i18next from 'i18next';
 
 // React Router
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Box } from '@mui/material';
 
 import Bosta from '../../assets/logo.png'
 
+import './Navbar.css'
+
 const Navbar = (props) => {
     const { t } = useTranslation();
+    const [trackNumber, setTrackNumber] = useState('');
     const htmlRoot = document.querySelector("html");
+    const Navigate = useNavigate()
 
     const LanguageHandling = () => {
         localStorage.LANG = localStorage.LANG === 'ar' ? 'en' : 'ar';
@@ -23,6 +27,31 @@ const Navbar = (props) => {
         i18next.changeLanguage(localStorage.LANG).then();
     };
 
+    useEffect(() => {
+        const track = document.getElementById('trackShipment')
+        const trackBox = document.getElementById('trackBox')
+        track.addEventListener("mouseover", () => {
+            document.getElementById("trackBox").classList.remove('d-none');
+        });
+        track.addEventListener('mouseout', () => {
+            document.getElementById("trackBox").classList.add('d-none');
+        });
+
+        trackBox.addEventListener('mouseover', () => {
+            document.getElementById("trackBox").classList.remove('d-none');
+        });
+        trackBox.addEventListener('mouseout', () => {
+            document.getElementById("trackBox").classList.add('d-none');
+        });
+    }, []);
+
+    const SendTrackNumber = () => {
+        localStorage.setItem('trackNumber', trackNumber);
+        setTrackNumber('');
+        document.getElementById("trackBox").classList.add('d-none');
+        Navigate('/');
+    }
+
     const LogOut = () => {
         localStorage.removeItem('access_token');
     }
@@ -30,7 +59,7 @@ const Navbar = (props) => {
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
-                <div className="container-fluid">
+                <div className="container-fluid px-5">
                     <Link to='/' type='button'><img style={{ width: '100px' }} src={Bosta} alt='Bosta' /></Link>
                     <div className="sections">
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,12 +79,26 @@ const Navbar = (props) => {
                             </ul>
                         </div>
                     </div>
-                    <div className="settings d-flex">
+                    <div className="settings d-flex align-items-center gap-3">
+                        <Box className='lang mx-2 d-flex gap-1'>
+                            <button id='trackShipment' className='btn btn-light border-danger text-danger'>{t('Track_Shipment')}</button>
+                            <div id='trackBox' className="d-none">
+                                <h5>{t('Track_Your_Shipment')}</h5>
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" placeholder={t('Tracking_No')} onChange={(e) => { setTrackNumber(e.target.value); }} />
+                                    <div className="input-group-append">
+                                        <button className="btn btn-outline-secondary" type="button" onClick={SendTrackNumber}>Button</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Box>
+                        {localStorage.getItem('access_token').length > 0 ?
+                            <Link to='/login' type='button' onClick={LogOut}>{t('Log_Out')}</Link> :
+                            <Link to='/login' type='button'>{t('Sign_Up')}</Link>
+                        }
                         <Box className='lang mx-2 d-flex gap-1' onClick={LanguageHandling}>
-                            <i className="bi bi-translate"></i>
                             <Box component='p' className='mb-0'>{t('Lang')}</Box>
                         </Box>
-                        <Link to='/login' type='button' onClick={LogOut}>Log Out</Link>
                     </div>
                 </div>
             </nav>

@@ -1,0 +1,16 @@
+.lang {
+    position: relative;
+}
+
+#trackBox {
+    position: absolute;
+    width: 300px;
+    top: 38px;
+    left: 0;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #e4e7ec;
+    box-shadow: 0 10px 40px rgba(0,0,0,.10196078431372549);
+    z-index: 9999999;
+}
