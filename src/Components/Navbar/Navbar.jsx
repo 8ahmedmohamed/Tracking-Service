@@ -28,6 +28,11 @@ const Navbar = (props) => {
     };
 
     useEffect(() => {
+        props.setDirection(localStorage.LANG === "en" ? 'left' : 'right');
+        htmlRoot.setAttribute("dir", localStorage.LANG === "en" ? "ltr" : "rtl");
+        htmlRoot.setAttribute("lang", localStorage.LANG === "en" ? "en" : "ar");
+        i18next.changeLanguage(localStorage.LANG).then();
+
         const track = document.getElementById('trackShipment')
         const trackBox = document.getElementById('trackBox')
         track.addEventListener("mouseover", () => {
@@ -43,7 +48,7 @@ const Navbar = (props) => {
         trackBox.addEventListener('mouseout', () => {
             document.getElementById("trackBox").classList.add('d-none');
         });
-    }, []);
+    }, [htmlRoot, props]);
 
     const SendTrackNumber = () => {
         localStorage.setItem('trackNumber', trackNumber);
@@ -59,8 +64,8 @@ const Navbar = (props) => {
     return (
         <React.Fragment>
             <nav className="navbar navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
-                <div className="container-fluid px-5">
-                    <Link to='/' type='button'><img style={{ width: '100px' }} src={Bosta} alt='Bosta' /></Link>
+                <div className="container-fluid px-5 py-3">
+                    <Link to='/' type='button'><img style={{ width: '120px' }} src={Bosta} alt='Bosta' /></Link>
                     <div className="sections">
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
@@ -84,10 +89,14 @@ const Navbar = (props) => {
                             <button id='trackShipment' className='btn btn-light border-danger text-danger'>{t('Track_Shipment')}</button>
                             <div id='trackBox' className="d-none">
                                 <h5>{t('Track_Your_Shipment')}</h5>
-                                <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder={t('Tracking_No')} onChange={(e) => { setTrackNumber(e.target.value); }} />
+                                <div className="input-group">
+                                    <input type="text" className="form-control rounded-0 bg-light" placeholder={t('Tracking_No')}
+                                        value={trackNumber} onChange={(e) => { setTrackNumber(e.target.value); }}
+                                        onKeyDown={(e) => { e.key === 'Enter' && SendTrackNumber() }} />
                                     <div className="input-group-append">
-                                        <button className="btn btn-outline-secondary" type="button" onClick={SendTrackNumber}>Button</button>
+                                        <button className="btn bg-danger rounded-0" type="button" onClick={SendTrackNumber}>
+                                            <i className="bi bi-search"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

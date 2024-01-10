@@ -1,3 +1,9 @@
+a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #000;
+}
+
 .lang {
     position: relative;
 }
@@ -11,6 +17,40 @@
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #e4e7ec;
-    box-shadow: 0 10px 40px rgba(0,0,0,.10196078431372549);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .10196078431372549);
     z-index: 9999999;
+}
+
+#trackBox .btn:hover,
+#trackBox .btn:active {
+    color: #fff !important;
+    border-color: transparent !important;
+}
+
+.form-control {
+    border: 1px solid #e4e7ec;
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+.form-control:focus {
+    border-color: transparent !important;
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, .25);
+}
+
+.form-control::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #aaadb1;
+    opacity: 1;
+    /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #aaadb1;
+}
+
+.form-control::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #aaadb1;
 }

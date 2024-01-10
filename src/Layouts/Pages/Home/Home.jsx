@@ -9,6 +9,8 @@ import axios, { AxiosError } from 'axios';
 
 import { toast } from 'react-toastify';
 
+import './Home.css'
+
 const Home = () => {
     const [trackingData, setTrackingData] = useState([]);
     const trackNumber = localStorage.getItem('trackNumber');
@@ -20,6 +22,7 @@ const Home = () => {
     const getServiceDetails = async (id) => {
         try {
             const response = await axios.get(`https://tracking.bosta.co/shipments/track/${id}`);
+            console.log(response.data.TransitEvents);
             setTrackingData(response.data.TransitEvents);
         } catch (err) {
             if (err && err instanceof AxiosError) {
@@ -32,7 +35,24 @@ const Home = () => {
     return (
         <React.Fragment>
             <Box className="container-fluid mt-5">
-                <button className='btn btn-primary' type='button' onClick={() => { getServiceDetails(67151313) }}>Get Data</button>
+                <div className="wizard-progress">
+                    <div className="step complete">
+                        Sourcing
+                        <div className="node"></div>
+                    </div>
+                    <div className="step complete">
+                        Grading
+                        <div className="node"></div>
+                    </div>
+                    <div className="step in-progress">
+                        Treatment
+                        <div className="node"></div>
+                    </div>
+                    <div className="step not-complete">
+                        Attributes
+                        <div className="node"></div>
+                    </div>
+                </div>
                 <div className="d-flex justify-content-center flex-wrap gap-4 my-2">
                     {trackingData.length > 0 && trackingData.map((item, index) => {
                         return (
