@@ -1,24 +1,99 @@
+* {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700 !important;
+}
+
 a {
     text-decoration: none;
     font-weight: 500;
-    color: #000;
+    color: #4f5665;
+}
+
+.navbar {
+    padding: 16px 70px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: #fff;
 }
 
 .lang {
     position: relative;
+    cursor: pointer;
+    color: #4f5665;
+}
+
+.track {
+    position: relative;
+}
+
+#trackShipment {
+    color: #F40105;
+    font-weight: 500;
+    border-color: transparent;
+    padding: 21px 28px;
+}
+
+#trackShipment:hover {
+    border: 1px solid #ebebeb;
+    border-bottom-color: transparent;
+    border-radius: 0.5rem 0.5rem 0 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .10196078431372549);
+}
+
+#trackShipment:active {
+    border-color: transparent;
+}
+
+#trackShipment::after {
+    font-family: FontAwesome;
+    content: '\f107';
+    color: #F40105;
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: inline-block;
+    width: 20px;
+}
+
+[dir='rtl'] #trackShipment:hover::after {
+    content: '\f104';
+}
+
+[dir='ltr'] #trackShipment:hover::after {
+    content: '\f105';
+}
+
+.SearchTitle {
+    margin-bottom: 0.5rem;
+    color: #475467;
+    font-weight: 500 !important;
 }
 
 #trackBox {
     position: absolute;
-    width: 300px;
-    top: 38px;
+    min-width: 350px;
+    top: 68px;
     left: 0;
-    padding: 30px;
+    padding: 31px 38px;
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #e4e7ec;
     box-shadow: 0 10px 40px rgba(0, 0, 0, .10196078431372549);
     z-index: 9999999;
+}
+
+#trackBox .btn {
+    padding: 0.7rem 1rem;
+    color: #fff !important;
+}
+
+[dir='ltr'] #trackBox .btn {
+    border-radius: 0 7px 7px 0;
+}
+
+[dir='rtl'] #trackBox .btn {
+    border-radius: 7px 0 0 7px;
 }
 
 #trackBox .btn:hover,
@@ -31,6 +106,16 @@ a {
     border: 1px solid #e4e7ec;
     background-color: #fff !important;
     color: #000 !important;
+    font-weight: 200 !important;
+    padding: 0.7rem;
+}
+
+[dir='ltr'] .form-control {
+    border-radius: 7px 0 0 7px !important;
+}
+
+[dir='rtl'] .form-control {
+    border-radius: 0 7px 7px 0 !important;
 }
 
 .form-control:focus {
@@ -53,4 +138,12 @@ a {
 .form-control::-ms-input-placeholder {
     /* Microsoft Edge */
     color: #aaadb1;
+}
+
+.bi-search {
+    display: flex;
+}
+
+.bi-search::before {
+    font-size: 1.5rem;
 }

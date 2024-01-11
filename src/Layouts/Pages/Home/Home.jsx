@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 // Material UI
-import { Box } from '@mui/material';
-
-import Card from '../../../Components/Card/Card';
+import { Box, Grid } from '@mui/material';
 
 import axios, { AxiosError } from 'axios';
 
 import { toast } from 'react-toastify';
+
+import Trackingbar from '../../../Components/Trackingbar/Trackingbar';
+import Trackingtable from '../../../Components/Trackingtable/Trackingtable';
 
 import './Home.css'
 
@@ -34,34 +35,22 @@ const Home = () => {
 
     return (
         <React.Fragment>
-            <Box className="container-fluid mt-5">
-                <div className="wizard-progress">
-                    <div className="step complete">
-                        Sourcing
-                        <div className="node"></div>
-                    </div>
-                    <div className="step complete">
-                        Grading
-                        <div className="node"></div>
-                    </div>
-                    <div className="step in-progress">
-                        Treatment
-                        <div className="node"></div>
-                    </div>
-                    <div className="step not-complete">
-                        Attributes
-                        <div className="node"></div>
-                    </div>
-                </div>
-                <div className="d-flex justify-content-center flex-wrap gap-4 my-2">
-                    {trackingData.length > 0 && trackingData.map((item, index) => {
-                        return (
-                            <Box key={index}>
-                                <Card item={item} />
-                            </Box>
-                        )
-                    })}
-                </div>
+            <Box className="container-fluid" sx={{ marginTop: '130px' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: '55px', padding: '25px', border: '1px solid #EEEE', borderRadius: '15px', margin: '0px 75px' }}>
+                    <Grid container spacing={2} sx={{ borderBottom: '1px solid #EEEE' }}>
+                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>ssds</Grid>
+                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>sddasd</Grid>
+                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>sdsads</Grid>
+                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>ddsad</Grid>
+                    </Grid>
+                    <Trackingbar />
+                </Box>
+                <Grid container spacing={2} className='mt-5'>
+                    <Grid item xl={8}>
+                        <Trackingtable trackingData={trackingData} />
+                    </Grid>
+                    <Grid item xl={4}></Grid>
+                </Grid>
             </Box>
         </React.Fragment>
     )

@@ -1,5 +1,5 @@
 {
-    "Lang": "ENG",
+    "Lang": "عربي",
     "Main": "Main",
     "Prices": "Prices",
     "Call_Sales": "Call Sales",
@@ -7,5 +7,9 @@
     "Sign_Up": "Sign Up",
     "Track_Shipment": "Track Shipment",
     "Track_Your_Shipment": "Track Your Shipment",
-    "Tracking_No": "Tracking No."
+    "Tracking_No": "Tracking No.",
+    "Order_Is_Created": "Order Is Created",
+    "Order_Is_Recieved_From_Shipper": "Order Is Recieved From Shipper",
+    "Order_Is_Out_For_Delivery": "Order Is Out For Delivery",
+    "Delivered": "Delivered"
 }

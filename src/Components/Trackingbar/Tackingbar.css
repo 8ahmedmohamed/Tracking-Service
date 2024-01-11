@@ -1,0 +1,105 @@
+* {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 500;
+}
+
+.wizard-progress {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    position: relative;
+}
+
+.wizard-progress .step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+.wizard-progress .step:not(:last-child)::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 37px;
+    height: 6px;
+    width: 100%;
+}
+
+
+[dir='rtl'] .wizard-progress .step:not(:last-child)::before {
+    right: 50%;
+}
+
+[dir='ltr'] .wizard-progress .step:not(:last-child)::before {
+    left: 50%;
+}
+
+.wizard-progress .step .node {
+    border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    bottom: 18px;
+    left: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -18px;
+}
+
+.wizard-progress .step.complete::before {
+    background-color: #F40105;
+}
+
+.wizard-progress .step.complete .node {
+    border: none;
+    background-color: #F40105;
+    height: 20px;
+    width: 20px;
+    bottom: 29px;
+}
+
+.wizard-progress .step.complete .node::before {
+    font-family: FontAwesome;
+    content: "\f00c";
+    color: #fff;
+}
+
+[dir='ltr'] .wizard-progress .step.in-progress::before {
+    background: -moz-linear-gradient(left, #EEEEEE 0%, #dcd5d5 60%);
+    background: -webkit-linear-gradient(left, #EEEEEE 0%, #dcd5d5 60%);
+    background: linear-gradient(to right, #EEEEEE 0%, #dcd5d5 60%);
+}
+
+[dir='rtl'] .wizard-progress .step.in-progress::before {
+    background: -moz-linear-gradient(left, #dcd5d5 0%, #EEEEEE 60%);
+    background: -webkit-linear-gradient(left, #dcd5d5 0%, #EEEEEE 60%);
+    background: linear-gradient(to right, #dcd5d5 0%, #EEEEEE 60%);
+}
+
+.wizard-progress .step.in-progress .node {
+    border: none;
+    background-color: #F40105;
+}
+
+.wizard-progress .step.in-progress .node::before {
+    font-family: FontAwesome;
+    content: "\f0d1";
+    color: #fff;
+    font-size: 15px;
+}
+
+.wizard-progress .step.not-complete .node {
+    border: 1px solid #dcd5d5;
+    background-color: #fff;
+}
+
+.wizard-progress .step.not-complete .node::before {
+    font-family: FontAwesome;
+    content: "\f0c7";
+    color: #dcd5d5;
+    font-size: 20px;
+}

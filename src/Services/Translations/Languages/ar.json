@@ -1,5 +1,5 @@
 {
-    "Lang": "عربي",
+    "Lang": "ENG",
     "Main": "الرئيسية",
     "Prices": "الأسعار",
     "Call_Sales": "كلم المبيعات",
@@ -7,5 +7,9 @@
     "Sign_Up": "تسجيل الدخول",
     "Track_Shipment": "تتبع شحنتك",
     "Track_Your_Shipment": "تتبع شحنتك",
-    "Tracking_No": "رقم التتبع"
+    "Tracking_No": "رقم التتبع",
+    "Order_Is_Created": "تم إنشاء الشحنة",
+    "Order_Is_Recieved_From_Shipper": "تم إستلام الشحنة من التاجر",
+    "Order_Is_Out_For_Delivery": "الشحمة خرجت للتسليم",
+    "Delivered": "تم التسليم"
 }

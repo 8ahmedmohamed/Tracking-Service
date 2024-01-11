@@ -18,7 +18,7 @@ const theme = createTheme({
     typography: {
         fontSize: 13,
         fontFamily: [
-            "Poppins",
+            "Cairo",
             "sans-serif"
         ].join(',')
     }
