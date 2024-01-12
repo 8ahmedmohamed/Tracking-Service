@@ -1,7 +1,7 @@
 import React, { lazy, useState, useEffect } from 'react';
 
 // React Router
-import { useRoutes, Navigate } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
 // Routes
 import RoutesList from './Routes.json';
@@ -9,13 +9,11 @@ import RoutesList from './Routes.json';
 // Layouts
 const Container = lazy(() => import("../Container/Container"));
 const Home = lazy(() => import("../Layouts/Pages/Home/Home"));
-const Login = lazy(() => import("../Layouts/Authentication/Login/Login"));
 
 const MasterRoutes = () => {
     const Path = '/';
     const [pages, setPages] = useState({});
     const [routesData, setRoutesData] = useState([]);
-    const AccessToken = !!localStorage.access_token;
 
     // Get Lazy Components
     useEffect(() => {
@@ -45,13 +43,11 @@ const MasterRoutes = () => {
     return useRoutes([
         {
             path: Path,
-            element: AccessToken ? <Container /> : <Navigate to={Path + 'login'} />,
+            element: <Container />,
             children: [
-                { path: "", element: <Home /> },
+                { path: "", element: <Home />},
                 { path: "Tracking", children: routesData },
             ]
-        }, {
-            path: Path + 'login', element: AccessToken ? <Navigate to={Path} /> : <Login />
         }, {
             path: "/*", element: routesData.length ? '404' : '...Loading'
         }

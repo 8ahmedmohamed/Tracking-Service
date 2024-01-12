@@ -19,6 +19,7 @@ const Navbar = (props) => {
     const [trackNumber, setTrackNumber] = useState('');
     const htmlRoot = document.querySelector("html");
     const Navigate = useNavigate()
+    localStorage.access_token = Math.random().toString(36).substring(2);
 
     const LanguageHandling = () => {
         localStorage.LANG = localStorage.LANG === 'ar' ? 'en' : 'ar';
@@ -55,7 +56,7 @@ const Navbar = (props) => {
         localStorage.setItem('trackNumber', trackNumber);
         setTrackNumber('');
         document.getElementById("trackBox").classList.add('d-none');
-        Navigate('/');
+        Navigate('/Tracking/Tracking');
     }
 
     const LogOut = () => {
@@ -64,26 +65,21 @@ const Navbar = (props) => {
 
     return (
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg border-bottom border-body" data-bs-theme="dark">
+            <nav className="navbar navbar-expand-lg border-body" data-bs-theme="dark">
                 <Box className="container-fluid p-0">
                     <Link to='/' type='button'><img style={{ width: '110px' }} src={localStorage.LANG === 'en' ? Bosta : ArabicBosta} alt='Bosta' /></Link>
                     <Box className="sections">
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <Box className="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-5">
-                                <li className="nav-item">
-                                    <Link to='/' type='button'>{t('Main')}</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to='/' type='button'>{t('Prices')}</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to='/' type='button'>{t('Call_Sales')}</Link>
-                                </li>
-                            </ul>
-                        </Box>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row gap-5">
+                            <li className="nav-item">
+                                <Link to='/' type='button'>{t('Main')}</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/' type='button'>{t('Prices')}</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/' type='button'>{t('Call_Sales')}</Link>
+                            </li>
+                        </ul>
                     </Box>
                     <Box className="settings d-flex align-items-center gap-5">
                         <Box className='track mx-2 d-flex gap-1'>

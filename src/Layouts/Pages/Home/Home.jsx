@@ -1,56 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
+//translation
+import { useTranslation } from "react-i18next";
+
+// React Router
+import { useNavigate } from 'react-router-dom';
 
 // Material UI
-import { Box, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-import axios, { AxiosError } from 'axios';
-
-import { toast } from 'react-toastify';
-
-import Trackingbar from '../../../Components/Trackingbar/Trackingbar';
-import Trackingtable from '../../../Components/Trackingtable/Trackingtable';
+import background from '../../../assets/background.png'
 
 import './Home.css'
 
 const Home = () => {
-    const [trackingData, setTrackingData] = useState([]);
-    const trackNumber = localStorage.getItem('trackNumber');
+    const { t } = useTranslation();
+    const [trackNumber, setTrackNumber] = useState('');
+    const Navigate = useNavigate();
 
-    useEffect(() => {
-        trackNumber && getServiceDetails(trackNumber);
-    }, [trackNumber])
-
-    const getServiceDetails = async (id) => {
-        try {
-            const response = await axios.get(`https://tracking.bosta.co/shipments/track/${id}`);
-            console.log(response.data.TransitEvents);
-            setTrackingData(response.data.TransitEvents);
-        } catch (err) {
-            if (err && err instanceof AxiosError) {
-                toast.error(err?.response?.data?.error ? err.response.data.error : err.message, { position: toast.POSITION.TOP_RIGHT });
-            }
-        }
-        localStorage.removeItem('trackNumber')
-    };
+    const SendTrackNumber = () => {
+        localStorage.setItem('trackNumber', trackNumber);
+        setTrackNumber('');
+        document.getElementById("trackBox").classList.add('d-none');
+        Navigate('/Tracking/Tracking');
+    }
 
     return (
         <React.Fragment>
-            <Box className="container-fluid" sx={{ marginTop: '130px' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: '55px', padding: '25px', border: '1px solid #EEEE', borderRadius: '15px', margin: '0px 75px' }}>
-                    <Grid container spacing={2} sx={{ borderBottom: '1px solid #EEEE' }}>
-                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>ssds</Grid>
-                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>sddasd</Grid>
-                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>sdsads</Grid>
-                        <Grid item xl={3} className='d-flex justify-content-center align-items-center'>ddsad</Grid>
-                    </Grid>
-                    <Trackingbar />
+            <Box className="container-fluid d-flex gap-3 align-items-center flex-column p-0" sx={{ maxHeight: '100vh' }}>
+                <Box className='d-flex gap-5 align-items-center flex-column' sx={{ width: '100%', padding: '130px 50px 50px', backgroundColor: '#F3FAFB' }}>
+                    <Typography variant='h4'>{t('Stay updated and track your shipment with Bosta')}</Typography>
+                    <Typography variant='h4'>{t('Track your shipment')}</Typography>
                 </Box>
-                <Grid container spacing={2} className='mt-5'>
-                    <Grid item xl={8}>
-                        <Trackingtable trackingData={trackingData} />
-                    </Grid>
-                    <Grid item xl={4}></Grid>
-                </Grid>
+                <Box id='trackSearch'>
+                    <Box className="input-group">
+                        <input type="text" className="form-control " placeholder={t('Tracking_No')}
+                            value={trackNumber} onChange={(e) => { setTrackNumber(e.target.value); }}
+                            onKeyDown={(e) => { e.key === 'Enter' && SendTrackNumber() }} />
+                        <Box className="input-group-append">
+                            <button className="btn bg-danger" type="button" onClick={SendTrackNumber}>
+                                <i className="bi bi-search"></i>
+                            </button>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box sx={{ width: '100%', paddingTop: '130px', backgroundColor: '#F3FAFB' }}>
+                    <img src={background} alt='background' style={{ width: '100%' }} />
+                </Box>
             </Box>
         </React.Fragment>
     )

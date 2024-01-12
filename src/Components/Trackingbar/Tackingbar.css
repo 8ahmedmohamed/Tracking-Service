@@ -50,31 +50,55 @@
     margin-left: -18px;
 }
 
-.wizard-progress .step.complete::before {
+.wizard-progress .step.created.delivered .node,
+.wizard-progress .step.created.delivered::before,
+.wizard-progress .step.recieved.delivered .node,
+.wizard-progress .step.recieved.delivered::before,
+.wizard-progress .step.in-progress.delivered .node,
+.wizard-progress .step.in-progress.delivered::before {
+    background-color: #35B600;
+}
+
+.wizard-progress .step.created.waiting .node,
+.wizard-progress .step.created.waiting::before,
+.wizard-progress .step.recieved.waiting .node,
+.wizard-progress .step.recieved.waiting::before,
+.wizard-progress .step.in-progress.waiting .node {
+    background-color: #F9BA02;
+}
+
+.wizard-progress .step.created.cancelled .node,
+.wizard-progress .step.created.cancelled::before,
+.wizard-progress .step.recieved.cancelled .node,
+.wizard-progress .step.recieved.cancelled::before,
+.wizard-progress .step.in-progress.cancelled .node {
     background-color: #F40105;
 }
 
-.wizard-progress .step.complete .node {
+.wizard-progress .step.created .node,
+.wizard-progress .step.recieved .node {
     border: none;
-    background-color: #F40105;
     height: 20px;
     width: 20px;
     bottom: 29px;
 }
 
-.wizard-progress .step.complete .node::before {
+.wizard-progress .step.created .node::before,
+.wizard-progress .step.recieved .node::before {
     font-family: FontAwesome;
     content: "\f00c";
     color: #fff;
 }
 
-[dir='ltr'] .wizard-progress .step.in-progress::before {
+[dir='ltr'] .wizard-progress .step.in-progress.waiting::before,
+[dir='ltr'] .wizard-progress .step.in-progress.cancelled::before {
     background: -moz-linear-gradient(left, #EEEEEE 0%, #dcd5d5 60%);
     background: -webkit-linear-gradient(left, #EEEEEE 0%, #dcd5d5 60%);
     background: linear-gradient(to right, #EEEEEE 0%, #dcd5d5 60%);
 }
 
-[dir='rtl'] .wizard-progress .step.in-progress::before {
+[dir='rtl'] .wizard-progress .step.in-progress.waiting::before,
+[dir='rtl'] .wizard-progress .step.in-progress.cancelled::before {
     background: -moz-linear-gradient(left, #dcd5d5 0%, #EEEEEE 60%);
     background: -webkit-linear-gradient(left, #dcd5d5 0%, #EEEEEE 60%);
     background: linear-gradient(to right, #dcd5d5 0%, #EEEEEE 60%);
@@ -82,17 +106,39 @@
 
 .wizard-progress .step.in-progress .node {
     border: none;
-    background-color: #F40105;
+}
+
+.wizard-progress .step.in-progress.delivered .node {
+    height: 20px;
+    width: 20px;
+    bottom: 29px;
 }
 
 .wizard-progress .step.in-progress .node::before {
     font-family: FontAwesome;
-    content: "\f0d1";
     color: #fff;
     font-size: 15px;
 }
 
-.wizard-progress .step.not-complete .node {
+.wizard-progress .step.in-progress.waiting .node::before,
+.wizard-progress .step.in-progress.cancelled .node::before {
+    content: "\f0d1";
+}
+
+.wizard-progress .step.in-progress.delivered .node::before {
+    content: "\f00c";
+}
+
+.wizard-progress .step.not-complete.delivered .node {
+    background-color: #35B600;
+    border: none;
+    height: 20px;
+    width: 20px;
+    bottom: 29px;
+}
+
+.wizard-progress .step.not-complete.waiting .node,
+.wizard-progress .step.not-complete.cancelled .node {
     border: 1px solid #dcd5d5;
     background-color: #fff;
 }
@@ -100,6 +146,17 @@
 .wizard-progress .step.not-complete .node::before {
     font-family: FontAwesome;
     content: "\f0c7";
+}
+
+.wizard-progress .step.not-complete.waiting .node::before,
+.wizard-progress .step.not-complete.cancelled .node::before {
+    content: "\f0c7";
     color: #dcd5d5;
     font-size: 20px;
+}
+
+.wizard-progress .step.not-complete.delivered .node::before {
+    content: "\f00c";
+    color: #fff;
+    font-size: 15px;
 }

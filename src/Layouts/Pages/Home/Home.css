@@ -1,0 +1,24 @@
+#trackSearch {
+    position: initial;
+    min-width: 350px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .10196078431372549);
+}
+
+#trackSearch .btn {
+    padding: 0.7rem 1rem;
+    color: #fff !important;
+}
+
+[dir='ltr'] #trackSearch .btn {
+    border-radius: 0 7px 7px 0;
+}
+
+[dir='rtl'] #trackSearch .btn {
+    border-radius: 7px 0 0 7px;
+}
+
+#trackSearch .btn:hover,
+#trackSearch .btn:active {
+    color: #fff !important;
+    border-color: transparent !important;
+}

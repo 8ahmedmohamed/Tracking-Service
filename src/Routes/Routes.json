@@ -2,9 +2,9 @@
     "PAGE": [
         {
             "PAGE_ID": 1,
-            "NAME": "CreateMember",
-            "REACT_PATH": "CreateMember/CreateMember",
-            "PATH": "CreateMember",
+            "NAME": "Tracking",
+            "REACT_PATH": "Tracking/Tracking",
+            "PATH": "Tracking",
             "PAGE_CODE": "1"
         }
     ]
